@@ -1,0 +1,8 @@
+node_modules
+build
+Untitled.ipynb
+__pycache__
+.ipynb_checkpoints
+*.pem
+IoT_Sensors.geojson
+settings.py

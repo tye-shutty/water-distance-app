@@ -1,0 +1,18 @@
+[Unit]
+Description=Gunicorn instance to serve Water
+After=network.target
+
+[Service]
+User=azureuser
+Group=www-data
+WorkingDirectory=/home/azureuser/Water
+Environment="PATH=/home/azureuser/Water/Waterenv/bin"
+ExecStart=/home/azureuser/Water/Waterenv/bin/gunicorn --timeout 60 --workers 3 \
+--error-logfile /home/azureuser/Water/water_error.log \
+--access-logfile /home/azureuser/Water/access.log \
+--capture-output --log-level debug --enable-stdio-inheritance\
+--bind unix:Water.sock -m 007 app:app\
+-c /home/azureuser/Water/gunicorn.conf.py
+
+[Install]
+WantedBy=multi-user.target
